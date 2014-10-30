@@ -2,10 +2,10 @@ package com.andreapivetta.tweetbooster.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import com.andreapivetta.tweetbooster.QuotesActivity;
@@ -13,49 +13,62 @@ import com.andreapivetta.tweetbooster.R;
 
 import java.util.ArrayList;
 
+public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.ViewHolder> {
 
-public class CategoriesAdapter extends ArrayAdapter<String> {
-
+    private ArrayList<String> authorsArrayList;
     private Context context;
-    private ArrayList<String> sourcesArrayList;
-    private int resource, mPageNumber;
     private String category;
+    private int mPageNumber;
 
-    public CategoriesAdapter(Context context, int resource,
-                             ArrayList<String> authorsArrayList, String category, int mPageNumber) {
-        super(context, resource, authorsArrayList);
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public Button categoryButton;
 
+        public ViewHolder(View container) {
+            super(container);
+
+            this.categoryButton = (Button) container.findViewById(R.id.categoryButton);
+        }
+    }
+
+    public  CategoriesAdapter(Context context, ArrayList<String> authorsArrayList, String category, int mPageNumber) {
         this.context = context;
-        this.resource = resource;
-        this.sourcesArrayList = authorsArrayList;
+        this.authorsArrayList = authorsArrayList;
         this.category = category;
         this.mPageNumber = mPageNumber;
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(resource, parent, false);
+    public CategoriesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                            int viewType) {
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.source_row, parent, false);
 
-        Button categoryButton = (Button) rowView.findViewById(R.id.categoryButton);
-        categoryButton.setText(sourcesArrayList.get(position));
-        categoryButton.setOnClickListener(new View.OnClickListener() {
+        return new ViewHolder(v);
+    }
 
+    @Override
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        holder.categoryButton.setText(authorsArrayList.get(position));
+        holder.categoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getContext().getSharedPreferences("MyPref", 0).edit()
+                context.getSharedPreferences("MyPref", 0).edit()
                         .putBoolean("IS_THIS_A_RETURN", true)
                         .putInt("LAST_CATEGORY", mPageNumber)
                         .apply();
 
                 Intent intent = new Intent(context, QuotesActivity.class);
                 intent.putExtra("CATEGORY", category)
-                        .putExtra("AUTHOR", sourcesArrayList.get(position));
+                        .putExtra("AUTHOR", authorsArrayList.get(position));
                 context.startActivity(intent);
             }
         });
-
-        return rowView;
     }
+
+
+    @Override
+    public int getItemCount() {
+        return authorsArrayList.size();
+    }
+
 }
