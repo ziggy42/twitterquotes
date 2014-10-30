@@ -12,18 +12,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
-import android.widget.ListView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.andreapivetta.tweetbooster.adapters.TweetsAdapter;
+import com.andreapivetta.tweetbooster.adapters.TweetCardsAdapter;
 import com.andreapivetta.tweetbooster.database.Repository;
 import com.andreapivetta.tweetbooster.database.TweetsDatabaseManager;
 import com.andreapivetta.tweetbooster.twitter.UpdateTwitterStatus;
@@ -48,8 +48,6 @@ public class QuotesActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quotes);
 
-        ListView quotesListView = (ListView) findViewById(R.id.quotesListView);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.quotesToolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
@@ -71,10 +69,10 @@ public class QuotesActivity extends ActionBarActivity {
         });
         setUpQuotes();
 
-        ArrayAdapter<String> quotesAdapter = new TweetsAdapter(this,
-                R.layout.tweet_row, quotesArrayList);
-
-        quotesListView.setAdapter(quotesAdapter);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.quotesRecyclerView);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(new TweetCardsAdapter(quotesArrayList, this));
 
         AdView adView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()

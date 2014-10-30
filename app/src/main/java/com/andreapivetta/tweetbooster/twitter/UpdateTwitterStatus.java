@@ -117,6 +117,7 @@ public class UpdateTwitterStatus extends AsyncTask<String, String, String> {
                 );
         mBuilder.setContentIntent(resultPendingIntent);
         mBuilder.setAutoCancel(true);
+
         NotificationManager mNotificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         // mId allows you to update the notification later on.
