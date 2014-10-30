@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.andreapivetta.tweetbooster.MainActivity">
+
+    <item android:id="@+id/wikipedia_redirect_menu"
+        android:title="@string/redirect_wikipedia"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_path3898"
+        app:showAsAction="always" />
+</menu>

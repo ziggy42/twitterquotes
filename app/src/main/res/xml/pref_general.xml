@@ -1,0 +1,54 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:key="pref_key_database_settings"
+        android:title="@string/pref_database_title" >
+        <Preference
+            android:key="pref_key_calendar_clear"
+            android:summary="@string/preference_calendar_long"
+            android:title="@string/pref_title_calendar_clear" />
+        <CheckBoxPreference
+            android:key="pref_key_dialog_show"
+            android:summary="@string/preference_ask_long"
+            android:title="@string/pref_key_dialog_show" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="pref_key_twitter_behaviore"
+        android:title="@string/pref_behavior_title" >
+        <CheckBoxPreference
+            android:key="pref_key_animation"
+            android:summary="@string/preference_animation_long"
+            android:title="@string/pref_key_animation" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="pref_key_about"
+        android:title="@string/pref_about_title" >
+        
+        <PreferenceScreen
+            android:key="pref_key_rate_app"
+            android:title="@string/pref_rate_for_support" >
+        </PreferenceScreen>
+        
+        <PreferenceScreen
+            android:key="pref_key_share_app"
+            android:title="@string/pref_share_for_support" >
+        </PreferenceScreen>
+        
+        <PreferenceScreen
+            android:key="pref_key_about_app"
+            android:title="@string/pref_title_about_app" >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:targetClass="com.andreapivetta.tweetbooster.AboutActivity"
+                android:targetPackage="com.andreapivetta.tweetbooster" />
+        </PreferenceScreen>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="pref_key_twitter_settings"
+        android:title="@string/pref_twitter_title" >
+        <Preference
+            android:key="pref_key_twitter_logout"
+            android:title="@string/pref_title_twitter_logout" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

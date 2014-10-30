@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="items_array">
+        <item>Home</item>
+        <item>Categorias</item>
+        <item>Calendario</item>
+        <item>Configuración</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Películas</item>
+        <item>Divertido</item>
+        <item>superhéroes</item>
+        <item>Escritores</item>
+        <item>Políticos</item>
+        <item>Filósofos</item>
+        <item>Otro</item>
+    </string-array>
+    
+    <array name="send_tweet_without_ask">
+        <item>No me lo preguntes otra vez</item>
+    </array>
+
+    <string name="title_activity_twitter_oauth">Login…Por favor espera</string>
+    <string name="done">Salva</string>
+    <string name="send_now">Envia tweet ahora</string>
+    <string name="cancel">Borra</string>
+    <string name="set_time">Este tweet se enviará en</string>
+    <string name="random_menu">Enviar un tweet al azar</string>
+    <string name="welcome">Bienvenido</string>
+    <string name="yes">Si</string>
+    <string name="delete_programmed_tweets">Eliminar todos tus tweets programados?</string>
+    <string name="logout_title_dialog">¿De verdad quieres salir de Twitter?</string>
+
+    <!-- Per le preferenze, copia-incollato -->
+    <string name="pref_twitter_title">Account configuración</string>
+    <string name="pref_title_twitter_logout">Logout y sales</string>
+    <string name="pref_title_calendar_clear">Limpia mi calendario </string>
+    <string name="pref_rate_for_support">Estima por el apoyo</string>
+    <string name="pref_share_for_support">Compartir apoyo</string>
+    <string name="pref_key_dialog_show">Pregunta antes de enviar el tweet</string>
+    <string name="rate_this_app">Vota esta aplicación</string>
+    <string name="not_now">Recordármelo más tarde</string>
+
+    <!-- Per l'AboutActivity-->
+    <string name="problems_and_suggestions">Contactos:</string>
+    <string name="libraries_used">Libraries Used:</string>
+    <string name="website_textView">Sitio web:</string>
+    <string name="pref_behavior_title">Comportamiento</string>
+    <string name="pref_key_animation">Categorías Animaciones</string>
+    <string name="promo_button">Tweet esta aplicación</string>
+
+    <string name="preference_calendar_long">Todos los tweet que has programado serán borrados</string>
+    <string name="preference_ask_long">Mostrar un cuadro de dialogo antes de enviar tweet</string>
+    <string name="preference_animation_long">Sin animaciones significa un mejor rendimiento</string>
+    <string name="status_tweeted_successfully">El tweet fue inviado con éxito</string>
+    <string name="removed_tweet">Tweet eliminado, haga clic para restaurar</string>
+    <string name="remove_tweet_cnt_description">Remove Tweet Button</string>
+
+</resources>

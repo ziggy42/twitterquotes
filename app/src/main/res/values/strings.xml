@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="items_array">
+        <item>Home</item>
+        <item>Categories</item>
+        <item>Calendar</item>
+        <item>Settings</item>
+    </string-array>
+    <string-array name="categories">
+        <item>Movies</item>
+        <item>Funny</item>
+        <item>Superheroes</item>
+        <item>Writers</item>
+        <item>Politicians</item>
+        <item>Philosophers</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="categories_query" translatable="false">
+        <item>Movies</item>
+        <item>Funny</item>
+        <item>Superheroes</item>
+        <item>Writers</item>
+        <item>Politicians</item>
+        <item>Philosophers</item>
+        <item>Others</item>
+    </string-array>
+
+    <array name="nav_drawer_icons" translatable="false">
+        <item>@drawable/ic_home_grey600_48dp</item>
+        <item>@drawable/ic_style_grey600_48dp</item>
+        <item>@drawable/ic_insert_invitation_grey600_48dp</item>
+        <item>@drawable/ic_settings_grey600_48dp</item>
+    </array>
+    <array name="send_tweet_without_ask">
+        <item>Don\'t ask me again</item>
+    </array>
+
+    <string name="app_name" translatable="false">Twitter Quotes</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="title_activity_twitter_oauth">Login…Please wait</string>
+    <string name="done">Save</string>
+    <string name="send_now">Send Tweet now</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok" translatable="false">OK</string>
+    <string name="set_time">This tweet will be sent on</string>
+    <string name="redirect_wikipedia" translatable="false">Wikipedia</string>
+    <string name="random_menu">Send a random tweet</string>
+    <string name="pay_with_a_tweet" translatable="false">Pay with a Tweet</string>
+    <string name="hastag" translatable="false">#TwitterQuotesJoinTheEmpire</string>
+    <string name="welcome">Welcome</string>
+    <string name="logout_title_dialog">Do you really want to disconnect of Twitter?</string>
+    <string name="yes">Yes</string>
+    <string name="login_button" translatable="false">Login Button</string>
+    <string name="change_contentdescription" translatable="false">Next Tweet Button</string>
+    <string name="send_contentdescription" translatable="false">Send This Tweet Button</string>
+    <string name="promo_message" translatable="false">Thanks for joining our army, help us recruit new troops</string>
+    <string name="promo_button">Tweet this app</string>
+    <string name="preference_calendar_long">All your programmed tweets will be deleted</string>
+    <string name="preference_ask_long">Show a dialog before send tweet</string>
+    <string name="preference_animation_long">No animations means better performance</string>
+    <string name="status_tweeted_successfully">Status tweeted successfully</string>
+    <string name="removed_tweet">Tweet removed, click to restore</string>
+    <string name="delete_programmed_tweets">Delete all your programmed tweets?</string>
+
+    <!-- Per le preferenze, copia-incollato -->
+    <string name="pref_twitter_title">Account settings</string>
+    <string name="pref_title_twitter_logout">Logout and Exit</string>
+    <string name="pref_database_title" translatable="false">Tweets</string>
+    <string name="pref_title_calendar_clear">Clear my Calendar</string>
+    <string name="pref_about_title" translatable="false">About</string>
+    <string name="pref_title_about_app" translatable="false">About app</string>
+    <string name="pref_rate_for_support">Rate for support</string>
+    <string name="pref_share_for_support">Share for support</string>
+    <string name="pref_key_dialog_show">Ask before send tweet</string>
+    <string name="rate_this_app">Rate this App</string>
+    <string name="not_now">Remind me later</string>
+
+    <!-- Per l'AboutActivity -->
+    <string name="my_website" translatable="false">andreapivetta.altervista.org</string>
+    <string name="image_content_description" translatable="false">app icon</string>
+    <string name="title_activity_about" translatable="false">About</string>
+    <string name="problems_and_suggestions">Contacts:</string>
+    <string name="andrea_twitter" translatable="false">\@Pivix00</string>
+    <string name="stefano_twitter" translatable="false">\@stefano_openlab</string>
+    <string name="libraries_used">Libraries Used:</string>
+    <string name="year_textview" translatable="false">" - 2014"</string>
+    <string name="website_textView">Websites:</string>
+    <string name="pref_behavior_title">Behavior</string>
+    <string name="pref_key_animation">Categories Animations</string>
+
+    <!-- Libraries -->
+    <string name="twitter4j_link" translatable="false">twitter4j.org/en/index.html</string>
+    <string name="Caldroid_link" translatable="false">github.com/roomorama/Caldroid</string>
+    <string name="rounded_image_view_link" translatable="false">github.com/vinc3m1/RoundedImageView</string>
+    <string name="twitter_oauth_view_link" translatable="false">github.com/TakahikoKawasaki/TwitterOAuthView</string>
+    <string name="android_universal_image_loader_link" translatable="false">github.com/nostra13/Android-Universal-Image-Loader</string>
+    <string name="preference_fragment_compat_link" translatable="false">github.com/liudongmiao/preference-fragment-compat</string>
+    <string name="remove_tweet_cnt_description">Remove Tweet Button</string>
+    <string name="title_activity_login" translatable="false">Login</string>
+
+</resources>
