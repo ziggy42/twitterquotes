@@ -42,3 +42,4 @@ build
 
 # IDS
 app/src/main/res/values/ids.xml
+app/src/main/java/com/andreapivetta/tweetbooster/twitter/TwitterKs.java
