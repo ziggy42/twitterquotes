@@ -71,15 +71,17 @@ public class UpdateTwitterStatus extends AsyncTask<String, String, String> {
     }
 
     protected void onPostExecute(String file_url) {
-        if (act != null) {
-            act.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    createNotification();
-                }
-            });
-        } else {
-            createNotification();
+        if (mSharedPreferences.getBoolean("Notifications", true)) {
+            if (act != null) {
+                act.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        createNotification();
+                    }
+                });
+            } else {
+                createNotification();
+            }
         }
     }
 

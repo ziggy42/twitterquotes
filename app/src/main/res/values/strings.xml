@@ -98,5 +98,7 @@
     <string name="preference_fragment_compat_link" translatable="false">github.com/liudongmiao/preference-fragment-compat</string>
     <string name="remove_tweet_cnt_description">Remove Tweet Button</string>
     <string name="title_activity_login" translatable="false">Login</string>
+    <string name="preference_notifications_title">Notifications</string>
+    <string name="preference_notification_summary">Notifications enabled</string>
 
 </resources>

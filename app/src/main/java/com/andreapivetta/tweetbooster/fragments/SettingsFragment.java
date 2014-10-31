@@ -19,12 +19,8 @@ import me.piebridge.android.preference.PreferenceFragment;
 
 
 public class SettingsFragment extends PreferenceFragment {
-    private Preference logOutPreference;
-    private Preference clearCalendarPreference;
-    private CheckBoxPreference showDialogCheckBox;
-    private CheckBoxPreference animationCheckBox;
-    private Preference prefKeyRateApp;
-    private Preference prefKeyShareApp;
+    private CheckBoxPreference showDialogCheckBox, animationCheckBox, notificationsPreference;
+    private Preference prefKeyRateApp, prefKeyShareApp, logOutPreference, clearCalendarPreference;
     private SharedPreferences mypref;
 
     public SettingsFragment() {
@@ -42,10 +38,12 @@ public class SettingsFragment extends PreferenceFragment {
         prefKeyRateApp = findPreference("pref_key_rate_app");
         prefKeyShareApp = findPreference("pref_key_share_app");
         animationCheckBox = (CheckBoxPreference) findPreference("pref_key_animation");
+        notificationsPreference = (CheckBoxPreference) findPreference("pref_key_notifications");
 
         mypref = getActivity().getSharedPreferences("MyPref", 0);
         showDialogCheckBox.setChecked(mypref.getBoolean("pref_key_dialog_show", true));
         animationCheckBox.setChecked(mypref.getBoolean("Animation", true));
+        notificationsPreference.setChecked(mypref.getBoolean("Notifications", true));
 
         setOnClickListeners();
     }
@@ -124,6 +122,19 @@ public class SettingsFragment extends PreferenceFragment {
                     mypref.edit().putBoolean("Animation", true).apply();
                 } else {
                     mypref.edit().putBoolean("Animation", false).apply();
+                }
+
+                return true;
+            }
+        });
+
+        notificationsPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                if (notificationsPreference.isChecked()) {
+                    mypref.edit().putBoolean("Notifications", true).apply();
+                } else {
+                    mypref.edit().putBoolean("Notifications", false).apply();
                 }
 
                 return true;
