@@ -48,7 +48,6 @@
     <string name="redirect_wikipedia" translatable="false">Wikipedia</string>
     <string name="random_menu">Send a random tweet</string>
     <string name="pay_with_a_tweet" translatable="false">Pay with a Tweet</string>
-    <string name="hastag" translatable="false">#TwitterQuotesJoinTheEmpire</string>
     <string name="welcome">Welcome</string>
     <string name="logout_title_dialog">Do you really want to disconnect of Twitter?</string>
     <string name="yes">Yes</string>

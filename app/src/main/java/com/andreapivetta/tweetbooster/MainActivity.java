@@ -28,7 +28,7 @@ public class MainActivity extends ActionBarActivity
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
     private static SharedPreferences mSharedPreferences;
-    static final String PREF_SELECTED_INDEX = "SELECTED_POSITION";
+    private static final String PREF_SELECTED_INDEX = "SELECTED_POSITION";
     public Toolbar toolbar;
 
     @Override

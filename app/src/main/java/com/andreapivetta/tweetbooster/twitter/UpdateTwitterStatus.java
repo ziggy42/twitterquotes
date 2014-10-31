@@ -83,7 +83,7 @@ public class UpdateTwitterStatus extends AsyncTask<String, String, String> {
         }
     }
 
-    protected void createNotification() {
+    void createNotification() {
         int myID = mSharedPreferences.getInt("NOT_ID", 0);
 
         if (myID > 100) {

@@ -1,7 +1,6 @@
 package com.andreapivetta.tweetbooster.fragments;
 
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -53,11 +52,6 @@ public class CategoriesFirstFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
     }
 
 

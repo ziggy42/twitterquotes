@@ -34,10 +34,10 @@ import java.util.ArrayList;
 
 public class MainFragment extends Fragment implements SensorEventListener {
 
+    private Boolean bool = false;
+    private Boolean bool1 = false;
     private InterstitialAd interstitial;
-
     private long lastUpdate;
-    Boolean bool = false, bool1 = false;
     private Vibrator v;
 
     private TextView tweetTextView, sourceTextView;
@@ -58,7 +58,6 @@ public class MainFragment extends Fragment implements SensorEventListener {
         View rootView = inflater.inflate(R.layout.fragment_home, container,
                 false);
 
-        // Create the interstitial.
         interstitial = new InterstitialAd(getActivity());
         interstitial.setAdUnitId("ca-app-pub-8642726692616831/8112443103");
         AdRequest adRequest = new AdRequest.Builder().
@@ -109,32 +108,29 @@ public class MainFragment extends Fragment implements SensorEventListener {
                     sendTweet(status);
                     setUpDisplayedTweet();
                 } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-                    builder.setTitle(getResources().getString(R.string.send_now));
-                    builder.setMultiChoiceItems(R.array.send_tweet_without_ask, null, new DialogInterface.OnMultiChoiceClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i, boolean b) {
-                            if (b)
-                                mypref.edit().putBoolean("pref_key_dialog_show", false).apply();
-                        }
-                    });
-                    builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            String status = tweetTextView.getText().toString();
-                            sendTweet(status);
-                            setUpDisplayedTweet();
-                            dialog.dismiss();
-                        }
-                    });
-                    builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // User cancelled the dialog
-                        }
-                    });
+                    (new AlertDialog.Builder(getActivity())).setTitle(getResources().getString(R.string.send_now))
+                            .setMultiChoiceItems(R.array.send_tweet_without_ask, null, new DialogInterface.OnMultiChoiceClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+                                    if (b)
+                                        mypref.edit().putBoolean("pref_key_dialog_show", false).apply();
+                                }
+                            })
+                            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    sendTweet(tweetTextView.getText().toString());
+                                    setUpDisplayedTweet();
+                                    dialog.dismiss();
+                                }
+                            })
+                            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
 
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                                }
+                            })
+                            .create()
+                            .show();
                 }
 
             }
@@ -144,26 +140,25 @@ public class MainFragment extends Fragment implements SensorEventListener {
             @Override
             public void onClick(View view) {
                 setUpDisplayedTweet();
-                SharedPreferences.Editor e = mypref.edit();
 
                 int count = mypref.getInt("show_ad", 0);
                 if (count == 10) {
                     displayInterstitial();
-                    e.putInt("show_ad", 0).apply();
+                    mypref.edit().putInt("show_ad", 0).apply();
                 } else {
-                    e.putInt("show_ad", count + 1).apply();
+                    mypref.edit().putInt("show_ad", count + 1).apply();
                 }
             }
         });
     }
 
-    public void displayInterstitial() {
+    void displayInterstitial() {
         if (interstitial.isLoaded()) {
             interstitial.show();
         }
     }
 
-    protected void sendTweet(String status) {
+    void sendTweet(String status) {
 
         if (status.trim().length() > 0) {
             new UpdateTwitterStatus(getActivity()).execute(status);
@@ -178,27 +173,21 @@ public class MainFragment extends Fragment implements SensorEventListener {
 
         int count = mypref.getInt("SEND_COUNT", 0);
         if (count == 30) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
-            builder.setTitle(getResources().getString(R.string.rate_this_app));
-
-            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    Intent i = new Intent(
-                            Intent.ACTION_VIEW,
-                            Uri.parse("market://details?id=com.andreapivetta.tweetbooster"));
-                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(i);
-                }
-            });
-            builder.setNegativeButton(R.string.not_now, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    // User cancelled the dialog
-                }
-            });
-
-            AlertDialog dialog = builder.create();
-            dialog.show();
+            (new AlertDialog.Builder(getActivity())).setTitle(getResources().getString(R.string.rate_this_app))
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent i = new Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("market://details?id=com.andreapivetta.tweetbooster"));
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(i);
+                        }
+                    })
+                    .setNegativeButton(R.string.not_now, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                        }
+                    })
+                    .create().show();
 
             mypref.edit().putInt("SEND_COUNT", 0).apply();
         } else {
@@ -206,7 +195,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
         }
     }
 
-    protected void getAllTweetsInDatabase() {
+    void getAllTweetsInDatabase() {
         Repository repo = Repository.getInstance(getActivity());
         SQLiteDatabase db = repo.getWritableDatabase();
 

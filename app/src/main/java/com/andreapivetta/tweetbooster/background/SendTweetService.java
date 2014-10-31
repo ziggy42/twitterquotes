@@ -39,8 +39,7 @@ public class SendTweetService extends IntentService {
         Cursor cursor = myDB.rawQuery(sqlQuery, null);
         for (int i = 0; i < cursor.getCount(); i++) {
             cursor.moveToNext();
-            String tweet = cursor.getString(0);
-            new UpdateTwitterStatus(getApplicationContext()).execute(tweet);
+            new UpdateTwitterStatus(getApplicationContext()).execute(cursor.getString(0));
         }
 
         myDB.execSQL("DELETE FROM tosend WHERE day = "

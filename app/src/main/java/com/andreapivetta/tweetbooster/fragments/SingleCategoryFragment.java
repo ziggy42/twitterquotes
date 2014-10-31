@@ -9,12 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.andreapivetta.tweetbooster.R;
 import com.andreapivetta.tweetbooster.adapters.CategoriesAdapter;
-import com.andreapivetta.tweetbooster.adapters.TweetCardsAdapter;
 import com.andreapivetta.tweetbooster.database.Repository;
 
 import java.util.ArrayList;
@@ -22,7 +19,7 @@ import java.util.ArrayList;
 
 public class SingleCategoryFragment extends Fragment {
 
-    public static final String ARG_PAGE = "page";
+    private static final String ARG_PAGE = "page";
     private int mPageNumber;
 
     private static String categoryName, currentCategory;

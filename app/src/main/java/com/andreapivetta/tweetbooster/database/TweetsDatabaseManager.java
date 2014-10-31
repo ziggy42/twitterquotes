@@ -10,10 +10,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 
-/**
- * Created by andrea on 03/03/14.
- * Classe per gestire il database dei tweet programmati
- */
 public class TweetsDatabaseManager {
 
     static final class SetsMetaData {
@@ -26,7 +22,7 @@ public class TweetsDatabaseManager {
         static final String UP_MINUTE_KEY = "minute";
     }
 
-    static final String TOSEND_TABLE_CREATE = "CREATE TABLE IF NOT EXISTS "
+    private static final String TOSEND_TABLE_CREATE = "CREATE TABLE IF NOT EXISTS "
             + SetsMetaData.UP_TABLE + " (" + SetsMetaData.UP_TWEET_KEY
             + " text not null," + SetsMetaData.UP_MINUTE_KEY
             + " integer not null," + SetsMetaData.UP_HOUR_KEY
@@ -35,15 +31,13 @@ public class TweetsDatabaseManager {
             + " integer not null," + SetsMetaData.UP_YEAR_KEY
             + " integer not null);";
 
-    DatabaseHelper myDBhelper;
-    SQLiteDatabase myDB;
-    Context context;
+    private DatabaseHelper myDBhelper;
+    private SQLiteDatabase myDB;
 
     private static final String DB_NAME = "user_tweets_db";
     private static final int DB_VERSION = 1;
 
     public TweetsDatabaseManager(Context context) {
-        this.context = context;
         this.myDBhelper = new DatabaseHelper(context, DB_NAME, null, DB_VERSION);
     }
 

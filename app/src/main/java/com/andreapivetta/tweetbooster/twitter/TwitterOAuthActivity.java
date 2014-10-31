@@ -19,18 +19,6 @@ import static com.andreapivetta.tweetbooster.twitter.TwitterKs.TWITTER_CONSUMER_
 
 public class TwitterOAuthActivity extends Activity implements TwitterOAuthView.Listener {
 
-
-    private static final String CONSUMER_KEY = "bxKVuZomqDOuptTQlB8Q";
-    private static final String CONSUMER_SECRET = "2dFM0XJ1UpLnIpOWu94mMUocP6gVwKg6WLcMX8QEWmU";
-    private static final String CALLBACK_URL = "http://andreapivetta.altervista.org/";//"oauth://t4jsample";
-    private static final boolean DUMMY_CALLBACK_URL = true;
-
-    // Preference Constants
-    static String PREFERENCE_NAME = "twitter_oauth";
-    static final String PREF_KEY_OAUTH_TOKEN = "oauth_token";
-    static final String PREF_KEY_OAUTH_SECRET = "oauth_token_secret";
-    static final String PREF_KEY_TWITTER_LOGIN = "isTwitterLogedIn";
-
     private TwitterOAuthView view;
     private boolean oauthStarted;
 
@@ -61,7 +49,7 @@ public class TwitterOAuthActivity extends Activity implements TwitterOAuthView.L
 
         // Start Twitter OAuth process. Its result will be notified via
         // TwitterOAuthView.Listener interface.
-        view.start(CONSUMER_KEY, CONSUMER_SECRET, CALLBACK_URL, DUMMY_CALLBACK_URL, this);
+        view.start(TwitterKs.TWITTER_CONSUMER_KEY, TwitterKs.TWITTER_CONSUMER_SECRET, TwitterKs.CALLBACK_URL, TwitterKs.DUMMY_CALLBACK_URL, this);
     }
 
 
@@ -71,9 +59,9 @@ public class TwitterOAuthActivity extends Activity implements TwitterOAuthView.L
         // for later use.
 
         getSharedPreferences("MyPref", 0).edit().
-                putString(PREF_KEY_OAUTH_TOKEN, accessToken.getToken()).
-                putString(PREF_KEY_OAUTH_SECRET, accessToken.getTokenSecret()).
-                putBoolean(PREF_KEY_TWITTER_LOGIN, true).
+                putString(TwitterKs.PREF_KEY_OAUTH_TOKEN, accessToken.getToken()).
+                putString(TwitterKs.PREF_KEY_OAUTH_SECRET, accessToken.getTokenSecret()).
+                putBoolean(TwitterKs.PREF_KEY_TWITTER_LOGIN, true).
                 apply();
 
         new GetProfilePictureURL().execute(accessToken.getToken(), accessToken.getTokenSecret());
@@ -95,11 +83,6 @@ public class TwitterOAuthActivity extends Activity implements TwitterOAuthView.L
     }
 
     private class GetProfilePictureURL extends AsyncTask<String, Integer, Void> {
-
-        /*
-         * In teoria questa classe mi permette di salvare
-         * l'url da cui prendere la foto profilo
-         */
 
         protected Void doInBackground(String... strings) {
             String access_token = strings[0];

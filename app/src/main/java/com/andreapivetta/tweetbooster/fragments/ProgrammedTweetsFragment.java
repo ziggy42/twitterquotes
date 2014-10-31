@@ -2,12 +2,10 @@ package com.andreapivetta.tweetbooster.fragments;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -122,8 +120,7 @@ public class ProgrammedTweetsFragment extends Fragment {
             }
         }
 
-        PagerAdapter mPagerAdapter = new TweetsSlidePagerAdapter(getActivity().getSupportFragmentManager());
-        tweetsPager.setAdapter(mPagerAdapter);
+        tweetsPager.setAdapter(new TweetsSlidePagerAdapter(getActivity().getSupportFragmentManager()));
     }
 
     private void setUpTweets() {
@@ -149,9 +146,8 @@ public class ProgrammedTweetsFragment extends Fragment {
                 date = ((cursor.getInt(2) + 1) < 10) ? (date + "0" + (cursor.getInt(2) + 1)) : (date + (cursor.getInt(2) + 1));
                 date = (cursor.getInt(1) < 10) ? (date + "0" + cursor.getInt(1)) : (date + cursor.getInt(1));
 
-                Date tempDay = formatter.parse(date);
                 bluDates.add(date);
-                caldroidFragment.setBackgroundResourceForDate(R.color.caldroid_holo_blue_dark, tempDay);
+                caldroidFragment.setBackgroundResourceForDate(R.color.caldroid_holo_blue_dark, formatter.parse(date));
             } catch (ParseException e) {
                 Log.i("EXCEPTION", "invalid date format");
             }
@@ -166,11 +162,6 @@ public class ProgrammedTweetsFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
     }
 
     private class TweetsSlidePagerAdapter extends FragmentStatePagerAdapter {

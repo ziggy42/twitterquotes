@@ -48,6 +48,7 @@ public class Repository extends SQLiteOpenHelper {
                 doUpgrade();
             }
         } catch (SQLiteException e) {
+            e.printStackTrace();
         } finally {
             if (db != null && db.isOpen()) {
                 db.close();
@@ -67,9 +68,6 @@ public class Repository extends SQLiteOpenHelper {
         mIsUpgraded = true;
     }
 
-    /**
-     * called if a database upgrade is needed
-     */
     private void doUpgrade() {
         // implement the database upgrade here.
     }
@@ -85,10 +83,6 @@ public class Repository extends SQLiteOpenHelper {
         }
     }
 
-    /**
-     * implementation to avoid closing the database connection while it is in
-     * use by others.
-     */
     @Override
     public synchronized void close() {
         mOpenConnections--;
@@ -105,22 +99,25 @@ public class Repository extends SQLiteOpenHelper {
             in = assetManager.open(DATABASE_NAME);
             out = new FileOutputStream(DATABASE_FILE);
             byte[] buffer = new byte[1024];
-            int read = 0;
+            int read;
             while ((read = in.read(buffer)) != -1) {
                 out.write(buffer, 0, read);
             }
         } catch (IOException e) {
+            e.printStackTrace();
         } finally {
             if (in != null) {
                 try {
                     in.close();
                 } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
             if (out != null) {
                 try {
                     out.close();
                 } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         }
@@ -135,6 +132,7 @@ public class Repository extends SQLiteOpenHelper {
                     null, SQLiteDatabase.OPEN_READWRITE);
             db.execSQL("PRAGMA user_version = " + VERSION);
         } catch (SQLiteException e) {
+            e.printStackTrace();
         } finally {
             if (db != null && db.isOpen()) {
                 db.close();

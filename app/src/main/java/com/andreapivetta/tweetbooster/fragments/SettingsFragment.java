@@ -25,8 +25,7 @@ public class SettingsFragment extends PreferenceFragment {
     private CheckBoxPreference animationCheckBox;
     private Preference prefKeyRateApp;
     private Preference prefKeyShareApp;
-
-    SharedPreferences mypref;
+    private SharedPreferences mypref;
 
     public SettingsFragment() {
 
@@ -108,11 +107,10 @@ public class SettingsFragment extends PreferenceFragment {
             @Override
             public boolean onPreferenceClick(Preference preference) {
 
-                SharedPreferences.Editor e = mypref.edit();
                 if (showDialogCheckBox.isChecked()) {
-                    e.putBoolean("pref_key_dialog_show", true).apply();
+                    mypref.edit().putBoolean("pref_key_dialog_show", true).apply();
                 } else {
-                    e.putBoolean("pref_key_dialog_show", false).apply();
+                    mypref.edit().putBoolean("pref_key_dialog_show", false).apply();
                 }
                 return true;
             }
@@ -122,11 +120,10 @@ public class SettingsFragment extends PreferenceFragment {
             @Override
             public boolean onPreferenceClick(Preference preference) {
 
-                SharedPreferences.Editor e = mypref.edit();
                 if (animationCheckBox.isChecked()) {
-                    e.putBoolean("Animation", true).apply();
+                    mypref.edit().putBoolean("Animation", true).apply();
                 } else {
-                    e.putBoolean("Animation", false).apply();
+                    mypref.edit().putBoolean("Animation", false).apply();
                 }
 
                 return true;

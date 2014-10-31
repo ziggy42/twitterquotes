@@ -13,27 +13,18 @@ import com.andreapivetta.tweetbooster.R;
 import com.andreapivetta.tweetbooster.database.TweetsDatabaseManager;
 import com.andreapivetta.tweetbooster.twitter.Tweet;
 
-/**
- * Questo è il fragment da usare sotto il calendario
- * per mostrare un tweet
- */
+
 public class SingleTweetFragment extends Fragment {
 
-    /**
-     * The argument key for the page number this fragment represents.
-     */
-    public static final String ARG_PAGE = "page";
-    public static final String ARG_TOTAL = "total";
-    public static final String ARG_HOUR = "hour";
-    public static final String ARG_DAY = "day";
-    public static final String ARG_MONTH = "month";
-    public static final String ARG_YEAR = "year";
-    public static final String ARG_MINUTE = "minute";
-    public static final String ARG_TWEET = "text";
+    private static final String ARG_PAGE = "page";
+    private static final String ARG_TOTAL = "total";
+    private static final String ARG_HOUR = "hour";
+    private static final String ARG_DAY = "day";
+    private static final String ARG_MONTH = "month";
+    private static final String ARG_YEAR = "year";
+    private static final String ARG_MINUTE = "minute";
+    private static final String ARG_TWEET = "text";
 
-    /**
-     * The fragment's page number, which is set to the argument value for {@link #ARG_PAGE}.
-     */
     private int mPageNumber;
     private int total;
     private int hour;
@@ -47,9 +38,7 @@ public class SingleTweetFragment extends Fragment {
     private ImageButton deleteTweetImageButton;
     private Button restoreButton;
 
-    /**
-     * Factory method for this fragment class. Constructs a new fragment for the given page number.
-     */
+
     public static SingleTweetFragment create(int total, int pageNumber, Tweet stodayTweet) {
         SingleTweetFragment fragment = new SingleTweetFragment();
         Bundle args = new Bundle();
@@ -84,7 +73,6 @@ public class SingleTweetFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout containing a title and body text.
         final ViewGroup rootView = (ViewGroup) inflater
                 .inflate(R.layout.fragment_single_tweet, container, false);
 
@@ -136,12 +124,4 @@ public class SingleTweetFragment extends Fragment {
 
         return rootView;
     }
-
-    /**
-     * Returns the page number represented by this fragment object.
-     */
-    public int getPageNumber() {
-        return mPageNumber;
-    }
-
 }
