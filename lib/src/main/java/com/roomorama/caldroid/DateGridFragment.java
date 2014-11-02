@@ -1,4 +1,5 @@
-package com.caldroid.app;
+package com.roomorama.caldroid;
+
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.GridView;
+
+import com.caldroid.app.R;
 
 /**
  * DateGridFragment contains only 1 gridview with 7 columns to display all the
@@ -21,7 +24,7 @@ import android.widget.GridView;
  */
 public class DateGridFragment extends Fragment {
 	private GridView gridView;
-	private com.caldroid.app.CaldroidGridAdapter gridAdapter;
+	private CaldroidGridAdapter gridAdapter;
 	private OnItemClickListener onItemClickListener;
 	private OnItemLongClickListener onItemLongClickListener;
 
@@ -41,11 +44,11 @@ public class DateGridFragment extends Fragment {
 		this.onItemLongClickListener = onItemLongClickListener;
 	}
 
-	public com.caldroid.app.CaldroidGridAdapter getGridAdapter() {
+	public CaldroidGridAdapter getGridAdapter() {
 		return gridAdapter;
 	}
 
-	public void setGridAdapter(com.caldroid.app.CaldroidGridAdapter gridAdapter) {
+	public void setGridAdapter(CaldroidGridAdapter gridAdapter) {
 		this.gridAdapter = gridAdapter;
 	}
 

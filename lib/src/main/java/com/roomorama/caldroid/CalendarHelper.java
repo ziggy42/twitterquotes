@@ -1,4 +1,6 @@
-package com.caldroid.app;
+package com.roomorama.caldroid;
+
+import hirondelle.date4j.DateTime;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -6,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-
-import hirondelle.date4j.DateTime;
 
 /**
  * Convenient helper to work with date, JODA DateTime and String

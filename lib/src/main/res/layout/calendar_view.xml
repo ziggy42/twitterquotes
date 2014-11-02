@@ -26,8 +26,8 @@
             android:layout_toRightOf="@+id/calendar_left_arrow"
             android:gravity="center_horizontal"
             android:textIsSelectable="true"
-            android:textColor="#707070"
-            android:textSize="22sp" />
+            android:textColor="@color/caldroid_darker_gray"
+            android:textSize="21sp" />
 
         <Button
             android:id="@+id/calendar_right_arrow"
@@ -41,15 +41,14 @@
         android:id="@+id/weekday_gridview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-15dp"
+        android:layout_marginTop="-10dp"
         android:numColumns="7"
         android:stretchMode="columnWidth" >
     </GridView>
 
-    <com.caldroid.app.infiniteviewpager.InfiniteViewPager
+    <com.antonyt.infiniteviewpager.InfiniteViewPager
         android:id="@+id/months_infinite_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-10dp" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

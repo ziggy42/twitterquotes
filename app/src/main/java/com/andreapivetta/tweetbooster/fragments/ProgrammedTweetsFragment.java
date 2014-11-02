@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,8 +14,8 @@ import android.view.ViewGroup;
 import com.andreapivetta.tweetbooster.R;
 import com.andreapivetta.tweetbooster.database.TweetsDatabaseManager;
 import com.andreapivetta.tweetbooster.twitter.Tweet;
-import com.caldroid.app.CaldroidFragment;
-import com.caldroid.app.CaldroidListener;
+import com.roomorama.caldroid.CaldroidFragment;
+import com.roomorama.caldroid.CaldroidListener;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -35,6 +34,7 @@ public class ProgrammedTweetsFragment extends Fragment {
     private ArrayList<Tweet> todayTweets = new ArrayList<Tweet>();
     private ArrayList<String> bluDates = new ArrayList<String>();
     private Date previousSelectedDate;
+    private DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
 
     public ProgrammedTweetsFragment() {
     }
@@ -48,14 +48,14 @@ public class ProgrammedTweetsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         View rootView = inflater.inflate(R.layout.fragment_programmed_tweets, container,
                 false);
 
-        c = Calendar.getInstance();
-
         caldroidFragment = new CaldroidFragment();
-        Calendar cal = Calendar.getInstance();
 
+        c = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance();
         previousSelectedDate = cal.getTime();
 
         String month = (cal.get(Calendar.MONTH) + 1 < 10) ? ("0" + (cal.get(Calendar.MONTH) + 1)) : ("" + (cal.get(Calendar.MONTH) + 1));
@@ -66,8 +66,8 @@ public class ProgrammedTweetsFragment extends Fragment {
         args.putInt(CaldroidFragment.YEAR, cal.get(Calendar.YEAR));
         caldroidFragment.setArguments(args);
 
-        FragmentTransaction t = getActivity().getSupportFragmentManager().beginTransaction();
-        t.replace(R.id.calendar_container_frame_layout, caldroidFragment).commit();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.calendar_container_frame_layout, caldroidFragment).commit();
 
         tweetsPager = (ViewPager) rootView.findViewById(R.id.tweetsPager);
 
@@ -76,7 +76,6 @@ public class ProgrammedTweetsFragment extends Fragment {
         setUpTodayTweets();
 
         caldroidFragment.setBackgroundResourceForDate(R.color.barbie_pink, c.getTime());
-
         return rootView;
     }
 
@@ -87,8 +86,6 @@ public class ProgrammedTweetsFragment extends Fragment {
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(date);
                 c.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
-
-                DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
 
                 bluDates.clear();
                 setUpTweets();
@@ -131,8 +128,6 @@ public class ProgrammedTweetsFragment extends Fragment {
 
         Cursor cursor = myDB.rawQuery("SELECT tweet,day,month,year,hour,minute FROM tosend", null);
 
-        DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-
         for (int i = 0; i < cursor.getCount(); i++) {
             cursor.moveToNext();
 
@@ -172,7 +167,7 @@ public class ProgrammedTweetsFragment extends Fragment {
 
         @Override
         public android.support.v4.app.Fragment getItem(int position) {
-            return new SingleTweetFragment().create(getCount(), position, todayTweets.get(position));
+            return SingleTweetFragment.create(getCount(), position, todayTweets.get(position));
         }
 
         @Override
@@ -180,5 +175,4 @@ public class ProgrammedTweetsFragment extends Fragment {
             return todayTweets.size();
         }
     }
-
 }

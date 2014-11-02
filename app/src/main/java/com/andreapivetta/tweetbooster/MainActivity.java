@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -57,9 +55,7 @@ public class MainActivity extends ActionBarActivity
                     getFragmentManager().findFragmentById(R.id.navigation_drawer);
             mTitle = getTitle();
 
-            DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-            mNavigationDrawerFragment.setUp(R.id.navigation_drawer, mDrawerLayout);
+            mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
 
             if (mSharedPreferences.getBoolean("FIRST_LAUNCH", true)) {
                 createPayWithAClickDialog();
@@ -161,13 +157,5 @@ public class MainActivity extends ActionBarActivity
 
     private boolean isTwitterLoggedInAlready() {
         return mSharedPreferences.getBoolean(TwitterKs.PREF_KEY_TWITTER_LOGIN, false);
-    }
-
-    Intent getShareIntent() {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_SUBJECT, "I am using Android App !!!");
-
-        return intent;
     }
 }

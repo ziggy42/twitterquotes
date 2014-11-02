@@ -1,4 +1,4 @@
-package com.caldroid.app.infiniteviewpager;
+package com.antonyt.infiniteviewpager;
 
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;

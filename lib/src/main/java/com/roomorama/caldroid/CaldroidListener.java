@@ -1,8 +1,8 @@
-package com.caldroid.app;
-
-import android.view.View;
+package com.roomorama.caldroid;
 
 import java.util.Date;
+
+import android.view.View;
 
 /**
  * CaldroidListener inform when user clicks on a valid date (not within disabled
@@ -40,7 +40,7 @@ public abstract class CaldroidListener {
 	 */
 	public void onChangeMonth(int month, int year) {
 		// Do nothing
-	}
+	};
 
 	
 	/**

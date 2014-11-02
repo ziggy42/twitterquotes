@@ -1,4 +1,4 @@
-package com.caldroid.app;
+package com.roomorama.caldroid;
 
 import android.content.Context;
 import android.util.AttributeSet;

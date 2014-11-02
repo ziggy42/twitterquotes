@@ -1,4 +1,8 @@
-package com.caldroid.app.infiniteviewpager;
+package com.antonyt.infiniteviewpager;
+
+import hirondelle.date4j.DateTime;
+
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -6,10 +10,6 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
-import java.util.ArrayList;
-
-import hirondelle.date4j.DateTime;
 
 /**
  * A {@link ViewPager} that allows pseudo-infinite paging with a wrap-around
@@ -86,13 +86,19 @@ public class InfiniteViewPager extends ViewPager {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-        return enabled && super.onTouchEvent(event);
-    }
+		if (enabled) {
+			return super.onTouchEvent(event);
+		}
+		return false;
+	}
 
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent event) {
-        return enabled && super.onInterceptTouchEvent(event);
-    }
+		if (enabled) {
+			return super.onInterceptTouchEvent(event);
+		}
+		return false;
+	}
 
 	/**
 	 * ViewPager does not respect "wrap_content". The code below tries to
