@@ -96,7 +96,7 @@ public class ProgrammedTweetsFragment extends Fragment {
                 if (bluDates.indexOf(formatter.format(previousSelectedDate)) < 0)
                     caldroidFragment.setBackgroundResourceForDate(R.color.white, previousSelectedDate);
                 else
-                    caldroidFragment.setBackgroundResourceForDate(R.color.caldroid_holo_blue_dark, previousSelectedDate);
+                    caldroidFragment.setBackgroundResourceForDate(R.color.colorPrimary, previousSelectedDate);
 
                 caldroidFragment.setBackgroundResourceForDate(R.color.barbie_pink, c.getTime());
 

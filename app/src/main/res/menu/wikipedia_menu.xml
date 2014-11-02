@@ -6,7 +6,7 @@
 
     <item android:id="@+id/wikipedia_redirect_menu"
         android:title="@string/redirect_wikipedia"
-        android:orderInCategory="100"
+        android:orderInCategory="101"
         android:icon="@drawable/ic_path3898"
         app:showAsAction="always" />
 </menu>

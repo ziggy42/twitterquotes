@@ -108,7 +108,7 @@ public class SingleTweetFragment extends Fragment {
         restoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rootView.setBackgroundColor(getResources().getColor(R.color.white));
+                rootView.setBackgroundColor(getResources().getColor(R.color.caldroid_transparent));
                 dateTextView.setVisibility(View.VISIBLE);
                 deleteTweetImageButton.setVisibility(View.VISIBLE);
                 restoreButton.setVisibility(View.GONE);

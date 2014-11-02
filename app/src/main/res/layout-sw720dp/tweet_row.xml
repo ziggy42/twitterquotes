@@ -10,8 +10,8 @@
         android:layout_gravity="center"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:minHeight="80dp"
         android:minWidth="350dp"
         android:padding="20dp"
@@ -34,7 +34,7 @@
                 android:background="?android:selectableItemBackground"
                 android:clickable="true"
                 android:textColor="#707070"
-                android:textSize="17sp" />
+                android:textSize="20sp"/>
 
             <ImageButton
                 android:id="@+id/tweetRowImageButton"

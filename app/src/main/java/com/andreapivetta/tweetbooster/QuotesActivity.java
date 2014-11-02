@@ -1,43 +1,28 @@
 package com.andreapivetta.tweetbooster;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.DatePicker;
-import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.andreapivetta.tweetbooster.adapters.TweetCardsAdapter;
 import com.andreapivetta.tweetbooster.database.Repository;
-import com.andreapivetta.tweetbooster.database.TweetsDatabaseManager;
 import com.andreapivetta.tweetbooster.twitter.UpdateTwitterStatus;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 
 public class QuotesActivity extends ActionBarActivity {
-
-    private static final String MY_PREFERENCES = "MyPref";
-    private static final String TEXT_DATA_KEY = "quote";
 
     private String category;
     private String author;
@@ -76,12 +61,12 @@ public class QuotesActivity extends ActionBarActivity {
 
         AdView adView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR).
-                        addTestDevice("EB8CB71D9FE394E0DCCBF26188BED5D7").
-                        addTestDevice("F466F2402B12B6EE39AEEB527D829E2A").
-                        addTestDevice("A272A918ED2BBA9EC2138C622D7212D0").
-                        addTestDevice("C9F505E68A8DADEB86EF831BD769444D").
-                        build();
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("EB8CB71D9FE394E0DCCBF26188BED5D7")
+                .addTestDevice("A272A918ED2BBA9EC2138C622D7212D0")
+                .addTestDevice("C9F505E68A8DADEB86EF831BD769444D")
+                .addTestDevice("EEC1F897DA0F5D96B97DD79FA09522C6")
+                .build();
         adView.loadAd(adRequest);
     }
 
@@ -122,123 +107,4 @@ public class QuotesActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    public static class ProgramTimeDialogFragment extends DialogFragment {
-
-        private DatePicker datePicker;
-        private TimePicker timePicker;
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle(R.string.set_time);
-
-            LayoutInflater inflater = getActivity().getLayoutInflater();
-            View dialogView = inflater
-                    .inflate(R.layout.dialog_time_picker, null);
-
-            builder.setView(dialogView);
-
-            datePicker = (DatePicker) dialogView.findViewById(R.id.datePicker1);
-            timePicker = (TimePicker) dialogView.findViewById(R.id.timePicker1);
-
-            SharedPreferences prefs = getActivity().getSharedPreferences(
-                    MY_PREFERENCES, Context.MODE_PRIVATE);
-            final String currentTweet = prefs.getString(TEXT_DATA_KEY,
-                    "Tweet Tweet!");
-
-            builder.setPositiveButton(R.string.done,
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-
-                            int day = datePicker.getDayOfMonth();
-                            int month = datePicker.getMonth();
-                            int year = datePicker.getYear();
-                            int hour = timePicker.getCurrentHour();
-                            int minute = timePicker.getCurrentMinute();
-
-                            if (checkIfDateAvailable(year, month, day, hour,
-                                    minute)) {
-
-                                TweetsDatabaseManager utDB = new TweetsDatabaseManager(
-                                        getActivity());
-                                utDB.open();
-                                utDB.insertUp(currentTweet, minute, hour, day,
-                                        month, year);
-                                utDB.close();
-                            } else {
-                                Toast.makeText(
-                                        getActivity(),
-                                        "Nice try :/. you can't send tweets in the past",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-
-                            ProgramTimeDialogFragment.this.getDialog().cancel();
-
-
-                        }
-
-                    }).setNegativeButton(R.string.cancel,
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-
-                            ProgramTimeDialogFragment.this.getDialog().cancel();
-                        }
-                    });
-
-            builder.setNeutralButton(getResources().getString(R.string.send_now),
-                    new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            new UpdateTwitterStatus(getActivity())
-                                    .execute(currentTweet);
-
-                            ProgramTimeDialogFragment.this.getDialog().cancel();
-                        }
-                    });
-
-            return builder.create();
-        }
-
-    }
-
-    private static boolean checkIfDateAvailable(int year, int month, int day,
-                                                int hour, int minute) {
-        Calendar currentTime = Calendar.getInstance();
-        currentTime.setTimeInMillis(System.currentTimeMillis());
-
-        if (year > currentTime.get(Calendar.YEAR))
-            return true;
-        else {
-            if (year == currentTime.get(Calendar.YEAR)) {
-                if (month > currentTime.get(Calendar.MONTH))
-                    return true;
-                else {
-                    if (month == currentTime.get(Calendar.MONTH)) {
-                        if (day > currentTime.get(Calendar.DAY_OF_MONTH))
-                            return true;
-                        else {
-                            if (day == currentTime.get(Calendar.DAY_OF_MONTH)) {
-                                if (hour > currentTime
-                                        .get(Calendar.HOUR_OF_DAY))
-                                    return true;
-                                else {
-                                    if (hour == currentTime
-                                            .get(Calendar.HOUR_OF_DAY)) {
-                                        if (minute > currentTime
-                                                .get(Calendar.MINUTE))
-                                            return true;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        return false;
-    }
-
 }

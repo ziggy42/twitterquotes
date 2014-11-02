@@ -6,4 +6,5 @@
     android:divider="@android:color/transparent"
     android:paddingLeft="80dp"
     android:paddingRight="80dp"
+    android:paddingTop="5dp"
     android:scrollbars="vertical" />

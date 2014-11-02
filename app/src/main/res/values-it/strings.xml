@@ -10,12 +10,12 @@
 
     <string-array name="categories">
         <item>Film</item>
-        <item>Divertenti</item>
-        <item>Supereroi</item>
         <item>Scrittori</item>
         <item>Politici</item>
         <item>Filosofi</item>
         <item>Altri</item>
+        <item>Divertenti</item>
+        <item>Supereroi</item>
     </string-array>
     
     <array name="send_tweet_without_ask">
@@ -58,5 +58,8 @@
     <string name="removed_tweet">Tweet rimosso, clicca per annullare</string>
     <string name="yes">Si</string>
     <string name="remove_tweet_cnt_description">Remove Tweet Button</string>
+
+    <string name="preference_notifications_title">Notifiche</string>
+    <string name="preference_notification_summary">Abilita Notifiche</string>
 
 </resources>

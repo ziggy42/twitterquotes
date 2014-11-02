@@ -9,21 +9,21 @@
     </string-array>
     <string-array name="categories">
         <item>Movies</item>
-        <item>Funny</item>
-        <item>Superheroes</item>
         <item>Writers</item>
         <item>Politicians</item>
         <item>Philosophers</item>
         <item>Others</item>
+        <item>Superheroes</item>
+        <item>Funny</item>
     </string-array>
     <string-array name="categories_query" translatable="false">
         <item>Movies</item>
-        <item>Funny</item>
-        <item>Superheroes</item>
         <item>Writers</item>
         <item>Politicians</item>
         <item>Philosophers</item>
         <item>Others</item>
+        <item>Superheroes</item>
+        <item>Funny</item>
     </string-array>
 
     <array name="nav_drawer_icons" translatable="false">
@@ -63,7 +63,7 @@
     <string name="removed_tweet">Tweet removed, click to restore</string>
     <string name="delete_programmed_tweets">Delete all your programmed tweets?</string>
 
-    <!-- Per le preferenze, copia-incollato -->
+    <!-- Per le preferenze -->
     <string name="pref_twitter_title">Account settings</string>
     <string name="pref_title_twitter_logout">Logout and Exit</string>
     <string name="pref_database_title" translatable="false">Tweets</string>
@@ -73,6 +73,10 @@
     <string name="pref_rate_for_support">Rate for support</string>
     <string name="pref_share_for_support">Share for support</string>
     <string name="pref_key_dialog_show">Ask before send tweet</string>
+    <string name="pref_behavior_title">Behavior</string>
+    <string name="pref_key_animation">Categories Animations</string>
+    <string name="preference_notifications_title">Notifications</string>
+    <string name="preference_notification_summary">Notifications enabled</string>
     <string name="rate_this_app">Rate this App</string>
     <string name="not_now">Remind me later</string>
 
@@ -86,8 +90,6 @@
     <string name="libraries_used">Libraries Used:</string>
     <string name="year_textview" translatable="false">" - 2014"</string>
     <string name="website_textView">Websites:</string>
-    <string name="pref_behavior_title">Behavior</string>
-    <string name="pref_key_animation">Categories Animations</string>
 
     <!-- Libraries -->
     <string name="twitter4j_link" translatable="false">twitter4j.org/en/index.html</string>
@@ -98,7 +100,7 @@
     <string name="preference_fragment_compat_link" translatable="false">github.com/liudongmiao/preference-fragment-compat</string>
     <string name="remove_tweet_cnt_description">Remove Tweet Button</string>
     <string name="title_activity_login" translatable="false">Login</string>
-    <string name="preference_notifications_title">Notifications</string>
-    <string name="preference_notification_summary">Notifications enabled</string>
+    <string name="title_activity_time_picker">Program Tweet</string>
+    <string name="timePickerActivityTitle">Program Tweet</string>
 
 </resources>

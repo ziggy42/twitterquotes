@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:divider="@android:color/transparent"
-    android:paddingLeft="80dp"
-    android:paddingRight="80dp"
+    android:paddingLeft="100dp"
+    android:paddingRight="100dp"
+    android:paddingTop="5dp"
     android:scrollbars="vertical" />
