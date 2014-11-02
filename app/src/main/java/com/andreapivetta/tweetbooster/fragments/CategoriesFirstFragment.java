@@ -62,7 +62,7 @@ public class CategoriesFirstFragment extends Fragment {
 
         @Override
         public android.support.v4.app.Fragment getItem(int position) {
-            return new SingleCategoryFragment().create(position);
+            return SingleCategoryFragment.create(position);
         }
 
         @Override

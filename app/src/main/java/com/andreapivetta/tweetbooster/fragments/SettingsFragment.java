@@ -20,7 +20,7 @@ import me.piebridge.android.preference.PreferenceFragment;
 
 public class SettingsFragment extends PreferenceFragment {
     private CheckBoxPreference showDialogCheckBox, animationCheckBox, notificationsPreference;
-    private Preference prefKeyRateApp, prefKeyShareApp, logOutPreference, clearCalendarPreference;
+    private Preference prefKeyRateApp, prefKeyShareApp, logOutPreference, clearCalendarPreference, bugReportPreference;
     private SharedPreferences mypref;
 
     public SettingsFragment() {
@@ -37,6 +37,7 @@ public class SettingsFragment extends PreferenceFragment {
         showDialogCheckBox = (CheckBoxPreference) findPreference("pref_key_dialog_show");
         prefKeyRateApp = findPreference("pref_key_rate_app");
         prefKeyShareApp = findPreference("pref_key_share_app");
+        bugReportPreference = findPreference("pref_key_bug_report");
         animationCheckBox = (CheckBoxPreference) findPreference("pref_key_animation");
         notificationsPreference = (CheckBoxPreference) findPreference("pref_key_notifications");
 
@@ -226,6 +227,19 @@ public class SettingsFragment extends PreferenceFragment {
                         return false;
                     }
                 });
+
+        bugReportPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent i = new Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://github.com/ziggy42/twitterquotes/issues"));
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
+
+                return false;
+            }
+        });
 
     }
 }

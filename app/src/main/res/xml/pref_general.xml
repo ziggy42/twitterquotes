@@ -37,6 +37,11 @@
             android:key="pref_key_share_app"
             android:title="@string/pref_share_for_support" >
         </PreferenceScreen>
+
+        <PreferenceScreen
+            android:key="pref_key_bug_report"
+            android:title="@string/pref_bug_report" >
+        </PreferenceScreen>
         
         <PreferenceScreen
             android:key="pref_key_about_app"

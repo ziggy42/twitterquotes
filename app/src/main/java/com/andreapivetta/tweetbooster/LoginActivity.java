@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.andreapivetta.tweetbooster.internet.ConnectionDetector;
@@ -20,7 +20,7 @@ public class LoginActivity extends Activity {
 
         final ConnectionDetector connectionDetector = new ConnectionDetector(this);
 
-        ImageView loginImageView = (ImageView) findViewById(R.id.loginImageView);
+        Button loginImageView = (Button) findViewById(R.id.loginImageView);
         loginImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

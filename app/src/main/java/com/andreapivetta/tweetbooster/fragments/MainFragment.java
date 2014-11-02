@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.andreapivetta.tweetbooster.R;
 import com.andreapivetta.tweetbooster.database.Repository;
 import com.andreapivetta.tweetbooster.twitter.Tweet;
+import com.andreapivetta.tweetbooster.twitter.TwitterKs;
 import com.andreapivetta.tweetbooster.twitter.UpdateTwitterStatus;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -59,7 +60,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
                 false);
 
         interstitial = new InterstitialAd(getActivity());
-        interstitial.setAdUnitId("ca-app-pub-8642726692616831/8112443103");
+        interstitial.setAdUnitId(TwitterKs.INTESTINAL_AD);
         AdRequest adRequest = new AdRequest.Builder().
                 addTestDevice(AdRequest.DEVICE_ID_EMULATOR).
                 addTestDevice("EB8CB71D9FE394E0DCCBF26188BED5D7").
@@ -84,11 +85,11 @@ public class MainFragment extends Fragment implements SensorEventListener {
 
         getAllTweetsInDatabase();
 
-        if (mypref.getString("Tweet", "NULL").equals("NULL")) {
-            setUpDisplayedTweet();
+        if(savedInstanceState != null) {
+            tweetTextView.setText(savedInstanceState.getString("Tweet"));
+            sourceTextView.setText(savedInstanceState.getString("SOURCE"));
         } else {
-            tweetTextView.setText(mypref.getString("Tweet", "NULL"));
-            sourceTextView.setText(mypref.getString("SOURCE", "NULL"));
+            setUpDisplayedTweet();
         }
 
         setupOnClickListeners();
@@ -103,9 +104,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
             public void onClick(View view) {
 
                 if (!mypref.getBoolean("pref_key_dialog_show", true)) {
-                    String status = tweetTextView.getText().toString();
-
-                    sendTweet(status);
+                    sendTweet(tweetTextView.getText().toString());
                     setUpDisplayedTweet();
                 } else {
 
@@ -140,14 +139,6 @@ public class MainFragment extends Fragment implements SensorEventListener {
             @Override
             public void onClick(View view) {
                 setUpDisplayedTweet();
-
-                int count = mypref.getInt("show_ad", 0);
-                if (count == 10) {
-                    displayInterstitial();
-                    mypref.edit().putInt("show_ad", 0).apply();
-                } else {
-                    mypref.edit().putInt("show_ad", count + 1).apply();
-                }
             }
         });
     }
@@ -199,9 +190,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
         Repository repo = Repository.getInstance(getActivity());
         SQLiteDatabase db = repo.getWritableDatabase();
 
-        String[] categories = getResources().getStringArray(R.array.categories_query);
-
-        for (String category : categories) {
+        for (String category : getResources().getStringArray(R.array.categories_query)) {
             Cursor cursor = db.rawQuery("SELECT quote,source FROM " + category, null);
 
             for (int i = 0; i < cursor.getCount(); i++) {
@@ -222,8 +211,22 @@ public class MainFragment extends Fragment implements SensorEventListener {
         tweetTextView.setText(tmp.tweet);
         sourceTextView.setText(tmp.source);
 
-        // TODO usa bundle queste cosa è da denuncia
-        mypref.edit().putString("SOURCE", tmp.source).putString("Tweet", tmp.tweet).apply();
+        int count = mypref.getInt("show_ad", 0);
+        if (count == 10) {
+            displayInterstitial();
+            mypref.edit().putInt("show_ad", 0).apply();
+
+            AdRequest adRequest = new AdRequest.Builder().
+                    addTestDevice(AdRequest.DEVICE_ID_EMULATOR).
+                    addTestDevice("EB8CB71D9FE394E0DCCBF26188BED5D7").
+                    addTestDevice("A272A918ED2BBA9EC2138C622D7212D0").
+                    addTestDevice("C9F505E68A8DADEB86EF831BD769444D").
+                    addTestDevice("EEC1F897DA0F5D96B97DD79FA09522C6").
+                    build();
+            interstitial.loadAd(adRequest);
+        } else {
+            mypref.edit().putInt("show_ad", count + 1).apply();
+        }
     }
 
     @Override
@@ -268,13 +271,10 @@ public class MainFragment extends Fragment implements SensorEventListener {
         }
     }
 
-
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // TODO Auto-generated method stub
 
     }
-
 
     @Override
     public void onResume() {
@@ -286,6 +286,13 @@ public class MainFragment extends Fragment implements SensorEventListener {
     public void onPause() {
         super.onPause();
         enabled = false;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString("SOURCE", sourceTextView.getText().toString());
+        savedInstanceState.putString("Tweet", tweetTextView.getText().toString());
     }
 
 }

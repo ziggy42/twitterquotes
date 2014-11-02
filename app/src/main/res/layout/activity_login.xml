@@ -4,25 +4,61 @@
     android:background="@drawable/home_background"
     tools:context="com.andreapivetta.tweetbooster.LoginActivity">
 
-    <ImageView
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/loginImageView"
-        android:src="@drawable/ic_login"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40dp"
+        android:text="@string/tweetMaiusc"
+        android:id="@+id/textView"
+        android:textColor="@color/white"
+        android:textSize="54sp"
+        android:gravity="center"
+        android:fontFamily="sans-serif-light"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:contentDescription="@string/login_button"/>
+        android:layout_marginTop="63dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/quotesMaiusc"
+        android:textSize="54sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-light"
+        android:id="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textView"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome"
-        android:id="@+id/textView"
+        android:gravity="start"
+        android:id="@+id/textView3"
         android:textColor="@color/white"
-        android:textSize="55sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="63dp" />
+        android:fontFamily="sans-serif-thin"
+        android:layout_below="@+id/textView2"
+        android:textSize="25sp"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_alignEnd="@+id/textView2" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginImageView"
+        android:background="@drawable/login_layer"
+        android:text="@string/login_button_text"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingEnd="10dp"
+        android:paddingLeft="60dp"
+        android:paddingStart="60dp"
+        android:textSize="20sp"
+        android:textColor="@color/caldroid_black"
+        android:fontFamily="sans-serif-thin"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

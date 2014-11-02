@@ -28,7 +28,7 @@
     <string name="cancel">Borra</string>
     <string name="set_time">Este tweet se enviará en</string>
     <string name="random_menu">Enviar un tweet al azar</string>
-    <string name="welcome">Bienvenido</string>
+    <string name="welcome">…bienvenido</string>
     <string name="yes">Si</string>
     <string name="delete_programmed_tweets">Eliminar todos tus tweets programados?</string>
     <string name="logout_title_dialog">¿De verdad quieres salir de Twitter?</string>
@@ -60,5 +60,9 @@
 
     <string name="preference_notifications_title">Notificaciones</string>
     <string name="preference_notification_summary">Notificación Activado</string>
+
+
+    <string name="pref_bug_report">Informar de un fallo</string>
+    <string name="login_button_text">Sign in with Twitter</string>
 
 </resources>
