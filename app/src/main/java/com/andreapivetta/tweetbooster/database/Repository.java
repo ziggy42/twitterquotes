@@ -15,7 +15,7 @@ import java.io.OutputStream;
 public class Repository extends SQLiteOpenHelper {
 
     private static final int VERSION = 123;
-    private static final String DATABASE_NAME = "102.db";
+    private static final String DATABASE_NAME = "103.db";
     private static File DATABASE_FILE;
     private boolean mInvalidDatabaseFile = false;
     private boolean mIsUpgraded = false;

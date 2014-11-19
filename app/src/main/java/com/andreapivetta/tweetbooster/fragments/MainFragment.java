@@ -67,6 +67,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
                 addTestDevice("A272A918ED2BBA9EC2138C622D7212D0").
                 addTestDevice("C9F505E68A8DADEB86EF831BD769444D").
                 addTestDevice("EEC1F897DA0F5D96B97DD79FA09522C6").
+                addTestDevice("D92FD0DC69AECDDD9D41C63DEF1D68C4").
                 build();
         interstitial.loadAd(adRequest);
 

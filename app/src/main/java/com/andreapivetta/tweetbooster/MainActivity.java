@@ -72,7 +72,7 @@ public class MainActivity extends ActionBarActivity
                 .setPositiveButton(R.string.promo_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        new UpdateTwitterStatus(getApplicationContext()).execute("What do you think about this? https://play.google.com/store/apps/details?id=com.andreapivetta.tweetbooster #TwitterQuotesJoinTheEmpire");
+                        new UpdateTwitterStatus(getApplicationContext()).execute("What do you think about this? https://play.google.com/store/apps/details?id=com.andreapivetta.tweetbooster #PunJoinTheEmpire");
                     }
                 })
                 .setIcon(getResources().getDrawable(R.drawable.ic_storm_trooper))

@@ -36,7 +36,7 @@
         <item>Don\'t ask me again</item>
     </array>
 
-    <string name="app_name" translatable="false">Twitter Quotes</string>
+    <string name="app_name" translatable="false">Pun</string>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="title_activity_twitter_oauth">Login…Please wait</string>
@@ -101,7 +101,7 @@
     <string name="title_activity_login" translatable="false">Login</string>
     <string name="pref_bug_report">Report a Bug</string>
     <string name="login_button_text">Sign in with Twitter</string>
-    <string name="tweetMaiusc" translatable="false">TWITTER</string>
+    <string name="tweetMaiusc" translatable="false">PUN</string>
     <string name="quotesMaiusc" translatable="false">QUOTES</string>
 
 </resources>
