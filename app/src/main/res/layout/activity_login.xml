@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/home_background"
+    android:background="@color/colorPrimary"
     tools:context="com.andreapivetta.tweetbooster.LoginActivity">
 
     <TextView
@@ -11,23 +11,11 @@
         android:id="@+id/textView"
         android:textColor="@color/white"
         android:textSize="54sp"
-        android:gravity="center"
+        android:gravity="right"
         android:fontFamily="sans-serif-light"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="63dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/quotesMaiusc"
-        android:textSize="54sp"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:fontFamily="sans-serif-light"
-        android:id="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/textView"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,10 +25,10 @@
         android:id="@+id/textView3"
         android:textColor="@color/white"
         android:fontFamily="sans-serif-thin"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/textView"
         android:textSize="25sp"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2" />
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
 
     <Button
         android:layout_width="wrap_content"

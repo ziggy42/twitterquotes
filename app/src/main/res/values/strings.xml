@@ -44,7 +44,6 @@
     <string name="send_now">Send Tweet now</string>
     <string name="cancel">Cancel</string>
     <string name="ok" translatable="false">OK</string>
-    <string name="set_time">This tweet will be sent on</string>
     <string name="redirect_wikipedia" translatable="false">Wikipedia</string>
     <string name="random_menu">Send a random tweet</string>
     <string name="pay_with_a_tweet" translatable="false">Pay with a Tweet</string>
@@ -102,7 +101,6 @@
     <string name="pref_bug_report">Report a Bug</string>
     <string name="login_button_text">Sign in with Twitter</string>
     <string name="tweetMaiusc" translatable="false">PUN</string>
-    <string name="quotesMaiusc" translatable="false">QUOTES</string>
 
     <string name="amazon_url" translatable="false">http://www.amazon.com/Andrea-Pivetta-Pun/dp/B00HMV7HKQ/</string>
     <string name="time">Time</string>

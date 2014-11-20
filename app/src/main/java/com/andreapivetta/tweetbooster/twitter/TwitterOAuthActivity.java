@@ -110,10 +110,6 @@ public class TwitterOAuthActivity extends Activity implements TwitterOAuthView.L
 
             return null;
         }
-
-        protected void onPostExecute(Long result) {
-        }
-
     }
 
 }

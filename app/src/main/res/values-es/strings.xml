@@ -26,7 +26,6 @@
     <string name="done">Salva</string>
     <string name="send_now">Envia tweet ahora</string>
     <string name="cancel">Borra</string>
-    <string name="set_time">Este tweet se enviará en</string>
     <string name="random_menu">Enviar un tweet al azar</string>
     <string name="welcome">…bienvenido</string>
     <string name="yes">Si</string>
@@ -64,5 +63,8 @@
 
     <string name="pref_bug_report">Informar de un fallo</string>
     <string name="login_button_text">Sign in with Twitter</string>
+
+    <string name="time">Ahora</string>
+    <string name="date">Fecha</string>
 
 </resources>

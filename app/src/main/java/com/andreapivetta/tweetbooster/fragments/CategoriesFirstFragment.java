@@ -20,11 +20,6 @@ public class CategoriesFirstFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -47,13 +42,6 @@ public class CategoriesFirstFragment extends Fragment {
 
         return rootView;
     }
-
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         public ScreenSlidePagerAdapter(android.support.v4.app.FragmentManager fm) {

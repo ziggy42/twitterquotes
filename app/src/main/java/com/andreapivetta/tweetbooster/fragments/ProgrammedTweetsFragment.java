@@ -40,11 +40,6 @@ public class ProgrammedTweetsFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -152,11 +147,6 @@ public class ProgrammedTweetsFragment extends Fragment {
 
         utDB.close();
         Collections.sort(tweets);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
     }
 
     private class TweetsSlidePagerAdapter extends FragmentStatePagerAdapter {

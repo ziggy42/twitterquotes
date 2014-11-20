@@ -71,7 +71,7 @@
             android:background="@drawable/button_background"
             android:contentDescription="@string/send_contentdescription"
             android:scaleType="centerInside"
-            android:elevation="2dp"
+            android:elevation="4dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_stat_icon_feather_notification" />
 
@@ -84,7 +84,7 @@
             android:background="@drawable/button_background"
             android:contentDescription="@string/change_contentdescription"
             android:scaleType="centerInside"
-            android:elevation="2dp"
+            android:elevation="4dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_keyboard_arrow_right_white_48dp" />
 
