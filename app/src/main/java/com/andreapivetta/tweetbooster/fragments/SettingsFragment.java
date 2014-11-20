@@ -200,7 +200,8 @@ public class SettingsFragment extends PreferenceFragment {
 
                         Intent i = new Intent(
                                 Intent.ACTION_VIEW,
-                                Uri.parse("market://details?id=com.andreapivetta.tweetbooster"));
+                                /*Uri.parse("market://details?id=com.andreapivetta.tweetbooster"));*/
+                                Uri.parse(getString(R.string.amazon_url)));
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i);
 
@@ -218,7 +219,7 @@ public class SettingsFragment extends PreferenceFragment {
                         sendIntent
                                 .putExtra(
                                         Intent.EXTRA_TEXT,
-                                        "Check out this app!! http://play.google.com/store/apps/details?id=com.andreapivetta.tweetbooster");
+                                        "Check out this app!! " + getString(R.string.amazon_url));
 
                         sendIntent.setType("text/plain");
                         startActivity(Intent.createChooser(sendIntent,

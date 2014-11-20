@@ -58,7 +58,7 @@ public class MainActivity extends ActionBarActivity
             mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
 
             if (mSharedPreferences.getBoolean("FIRST_LAUNCH", true)) {
-                createPayWithAClickDialog();
+                //createPayWithAClickDialog();
                 mSharedPreferences.edit().putBoolean("FIRST_LAUNCH", false).apply();
             }
         } else {
@@ -126,7 +126,7 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (isTwitterLoggedInAlready()) {
+        /*if (isTwitterLoggedInAlready()) {
             try {
                 if (!mNavigationDrawerFragment.isDrawerOpen()) {
 
@@ -139,7 +139,7 @@ public class MainActivity extends ActionBarActivity
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
         return super.onCreateOptionsMenu(menu);
     }
 

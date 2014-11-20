@@ -2,18 +2,23 @@ package com.andreapivetta.tweetbooster.adapters;
 
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -23,8 +28,10 @@ import com.andreapivetta.tweetbooster.R;
 import com.andreapivetta.tweetbooster.database.TweetsDatabaseManager;
 import com.andreapivetta.tweetbooster.twitter.UpdateTwitterStatus;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class TweetCardsAdapter extends RecyclerView.Adapter<TweetCardsAdapter.ViewHolder> {
 
@@ -133,59 +140,83 @@ public class TweetCardsAdapter extends RecyclerView.Adapter<TweetCardsAdapter.Vi
 
     public static class ProgramTimeDialogFragment extends DialogFragment {
 
-        private DatePicker datePicker;
-        private TimePicker timePicker;
+        final Calendar c = Calendar.getInstance();
+        int day, month, yar, hh, mm;
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle(R.string.set_time);
-
+            final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             LayoutInflater inflater = getActivity().getLayoutInflater();
-            View dialogView = inflater
-                    .inflate(R.layout.dialog_time_picker, null);
+            View dialogView = View.inflate(getActivity(), R.layout.dialog_time_picker, null);
 
-            datePicker = (DatePicker) dialogView.findViewById(R.id.datePicker1);
-            timePicker = (TimePicker) dialogView.findViewById(R.id.timePicker1);
-            datePicker.setMinDate(System.currentTimeMillis() - 1000);
+            final LinearLayout dateLinearLayout = (LinearLayout) dialogView.findViewById(R.id.selectDateLL);
+            final LinearLayout timeLinearLayout = (LinearLayout) dialogView.findViewById(R.id.selectHourLL);
+            final TextView dateTextView = (TextView) dialogView.findViewById(R.id.dateTextView);
+            final TextView timeTextView = (TextView) dialogView.findViewById(R.id.timeTextView);
             final String currentTweet = currentQuote;
+
+            timeLinearLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TimePickerDialog tpd = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                            hh = hourOfDay;
+                            mm = minute;
+
+                            timeTextView.setText(hh + ":" + mm);
+                        }
+                    }, 8, 0, false);
+                    tpd.show();
+                }
+            });
+
+            dateLinearLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DatePickerDialog dpd = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                            day = dayOfMonth;
+                            yar = year;
+                            month = monthOfYear;
+
+                            dateTextView.setText((month+1) + "/" + day + "/" + yar);
+                        }
+                    }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+                    dpd.show();
+                }
+            });
 
             builder.setView(dialogView)
                     .setPositiveButton(R.string.done, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
 
-                            int day = datePicker.getDayOfMonth();
-                            int month = datePicker.getMonth();
-                            int year = datePicker.getYear();
-                            int hour = timePicker.getCurrentHour();
-                            int minute = timePicker.getCurrentMinute();
-
-                            if (checkIfDateAvailable(year, month, day, hour,
-                                    minute)) {
-
-                                TweetsDatabaseManager utDB = new TweetsDatabaseManager(
-                                        getActivity());
-                                utDB.open();
-                                utDB.insertUp(currentTweet, minute, hour, day,
-                                        month, year);
-                                utDB.close();
-                            } else {
+                            if (dateTextView.getText().length() == 0 || timeTextView.getText().length() == 0) {
                                 Toast.makeText(
                                         getActivity(),
-                                        "Nice try :/. you can't send tweets in the past",
+                                        "All fields are required",
                                         Toast.LENGTH_SHORT).show();
-                            }
+                            } else {
+                                if (checkIfDateAvailable(yar, month, day, hh,
+                                        mm)) {
 
-                            ProgramTimeDialogFragment.this.getDialog().cancel();
-                        }
-                    })
-                    .setNegativeButton(R.string.cancel,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-
-                                    ProgramTimeDialogFragment.this.getDialog().cancel();
+                                    TweetsDatabaseManager utDB = new TweetsDatabaseManager(
+                                            getActivity());
+                                    utDB.open();
+                                    utDB.insertUp(currentTweet, mm, hh, day,
+                                            month, yar);
+                                    utDB.close();
+                                } else {
+                                    Toast.makeText(
+                                            getActivity(),
+                                            "Nice try :/. you can't send tweets in the past",
+                                            Toast.LENGTH_SHORT).show();
                                 }
-                            })
+                        }
+                    }
+        })
+                    .setNegativeButton(R.string.cancel, null)
                     .setNeutralButton(getResources().getString(R.string.send_now),
                             new DialogInterface.OnClickListener() {
 
@@ -193,8 +224,6 @@ public class TweetCardsAdapter extends RecyclerView.Adapter<TweetCardsAdapter.Vi
                                 public void onClick(DialogInterface dialog, int which) {
                                     new UpdateTwitterStatus(getActivity())
                                             .execute(currentTweet);
-
-                                    ProgramTimeDialogFragment.this.getDialog().cancel();
                                 }
                             });
 

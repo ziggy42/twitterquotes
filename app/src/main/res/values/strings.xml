@@ -104,4 +104,8 @@
     <string name="tweetMaiusc" translatable="false">PUN</string>
     <string name="quotesMaiusc" translatable="false">QUOTES</string>
 
+    <string name="amazon_url" translatable="false">http://www.amazon.com/Andrea-Pivetta-Pun/dp/B00HMV7HKQ/</string>
+    <string name="time">Time</string>
+    <string name="date">Date</string>
+
 </resources>

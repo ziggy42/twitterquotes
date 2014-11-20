@@ -163,7 +163,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
         }
 
 
-        int count = mypref.getInt("SEND_COUNT", 0);
+        /*int count = mypref.getInt("SEND_COUNT", 0);
         if (count == 30) {
             (new AlertDialog.Builder(getActivity())).setTitle(getResources().getString(R.string.rate_this_app))
                     .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
@@ -184,7 +184,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
             mypref.edit().putInt("SEND_COUNT", 0).apply();
         } else {
             mypref.edit().putInt("SEND_COUNT", count + 1).apply();
-        }
+        }*/
     }
 
     void getAllTweetsInDatabase() {
