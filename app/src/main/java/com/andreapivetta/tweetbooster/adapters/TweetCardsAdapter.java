@@ -11,14 +11,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -28,10 +26,8 @@ import com.andreapivetta.tweetbooster.R;
 import com.andreapivetta.tweetbooster.database.TweetsDatabaseManager;
 import com.andreapivetta.tweetbooster.twitter.UpdateTwitterStatus;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class TweetCardsAdapter extends RecyclerView.Adapter<TweetCardsAdapter.ViewHolder> {
 
@@ -146,7 +142,6 @@ public class TweetCardsAdapter extends RecyclerView.Adapter<TweetCardsAdapter.Vi
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            LayoutInflater inflater = getActivity().getLayoutInflater();
             View dialogView = View.inflate(getActivity(), R.layout.dialog_time_picker, null);
 
             final LinearLayout dateLinearLayout = (LinearLayout) dialogView.findViewById(R.id.selectDateLL);
@@ -164,7 +159,10 @@ public class TweetCardsAdapter extends RecyclerView.Adapter<TweetCardsAdapter.Vi
                             hh = hourOfDay;
                             mm = minute;
 
-                            timeTextView.setText(hh + ":" + mm);
+                            if (hh < 10)
+                                timeTextView.setText(hh + ":0" + mm);
+                            else
+                                timeTextView.setText(hh + ":" + mm);
                         }
                     }, 8, 0, false);
                     tpd.show();
@@ -181,7 +179,12 @@ public class TweetCardsAdapter extends RecyclerView.Adapter<TweetCardsAdapter.Vi
                             yar = year;
                             month = monthOfYear;
 
-                            dateTextView.setText((month+1) + "/" + day + "/" + yar);
+                            Calendar current = Calendar.getInstance();
+                            current.set(Calendar.YEAR, yar);
+                            current.set(Calendar.DAY_OF_MONTH, day);
+                            current.set(Calendar.MONTH, month);
+
+                            dateTextView.setText(android.text.format.DateFormat.getDateFormat(getActivity()).format(current.getTime()));
                         }
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
                     dpd.show();
@@ -213,9 +216,9 @@ public class TweetCardsAdapter extends RecyclerView.Adapter<TweetCardsAdapter.Vi
                                             "Nice try :/. you can't send tweets in the past",
                                             Toast.LENGTH_SHORT).show();
                                 }
+                            }
                         }
-                    }
-        })
+                    })
                     .setNegativeButton(R.string.cancel, null)
                     .setNeutralButton(getResources().getString(R.string.send_now),
                             new DialogInterface.OnClickListener() {
